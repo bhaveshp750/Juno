@@ -25,7 +25,7 @@ class MainViewModel @Inject constructor(
         getValueState()
     }
 
-    private fun getValueState() {
+    fun getValueState() {
         isLoading.value = true
         viewModelScope.launch {
             try {
@@ -40,11 +40,11 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private fun getEmptyState() {
+    fun getEmptyState() {
         isLoading.value = true
         viewModelScope.launch {
             try {
-                homeDto.value = api.getHome()
+                homeDto.value = api.getEmptyHome()
                 fetchError.value = false
                 isLoading.value = false
             } catch (e: Exception) {

@@ -2,7 +2,7 @@ package com.bhaveshp750.junoassignment.modal
 
 import com.google.gson.annotations.SerializedName
 
-data class AllTransaction(
+data class Transaction(
     val title: String,
     @SerializedName("txn_amount")
     val txnAmount: String,

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class HomeDto(
     @SerializedName("all_transactions")
-    val allTransactions: List<AllTransaction>,
+    val allTransactions: List<Transaction>,
     @SerializedName("crypto_balance")
     val cryptoBalance: CryptoBalance,
     @SerializedName("crypto_prices")

@@ -6,24 +6,17 @@
     android:padding="12dp"
     >
 
-    <FrameLayout
+    <ImageView
+        android:id="@+id/image"
         android:layout_width="60dp"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/image_bg_gradient">
-
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:padding="6dp"
         android:src="@drawable/ic_bitcoin"
         android:contentDescription="@string/icon"
         android:layout_gravity="center"
         />
-    </FrameLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_titles_layout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginStart="70dp"
@@ -79,11 +72,12 @@
             />
     </LinearLayout>
 
-   <RelativeLayout
+   <androidx.constraintlayout.widget.ConstraintLayout
        android:visibility="visible"
        android:id="@+id/price_layout"
+       android:layout_alignParentEnd="true"
        android:layout_width="wrap_content"
-       android:layout_height="wrap_content">
+       android:layout_height="match_parent">
         <TextView
             android:id="@+id/title2"
             android:layout_width="wrap_content"
@@ -91,7 +85,9 @@
             android:text="$16,862.22"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_alignParentEnd="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/subtitle2"
             android:textColor="?attr/colorOnSecondary" />
 
         <TextView
@@ -102,8 +98,9 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#599F27"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true" />
+            app:layout_constraintTop_toBottomOf="@id/title2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageView
             android:id="@+id/icon"
@@ -112,9 +109,10 @@
             android:layout_marginEnd="4dp"
             android:contentDescription="@string/icon"
             android:src="@drawable/ic_growing_price"
-            android:layout_toStartOf="@id/subtitle2"
-            android:layout_alignParentBottom="true" />
+            app:layout_constraintTop_toBottomOf="@id/title2"
+            app:layout_constraintEnd_toStartOf="@id/subtitle2"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-   </RelativeLayout>
+   </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
