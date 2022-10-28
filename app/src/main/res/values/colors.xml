@@ -7,5 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="text_secondary">#818181</color>
     <color name="dim_foreground_dark">#BEBEBE</color>
+    <color name="my_green">#599F27</color>
 </resources>

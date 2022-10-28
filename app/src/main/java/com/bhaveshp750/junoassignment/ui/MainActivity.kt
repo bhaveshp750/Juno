@@ -1,21 +1,22 @@
 package com.bhaveshp750.junoassignment.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
-import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.bhaveshp750.junoassignment.R
+import com.bhaveshp750.junoassignment.modal.CryptoPrice
 import com.bhaveshp750.junoassignment.modal.Transaction
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity(), YourHoldingsAdapter.OnButtonClickListe
 
     private lateinit var yourHoldingsRecyclerView: RecyclerView
     private lateinit var recentTransactionsRecyclerView: RecyclerView
+    private lateinit var currentPriceRecyclerView: RecyclerView
     // 0: Empty State, 1: Value State
     private var state = 1
     private lateinit var valueStateButton: Button
@@ -57,6 +59,7 @@ class MainActivity : AppCompatActivity(), YourHoldingsAdapter.OnButtonClickListe
 
         yourHoldingsRecyclerView = findViewById(R.id.your_crypto_holdings_recycler_view)
         recentTransactionsRecyclerView = findViewById(R.id.recent_transactions_recycler_view)
+        currentPriceRecyclerView = findViewById(R.id.current_price_recycler_view)
 
         val yourHoldingsAdapter = YourHoldingsAdapter(arrayListOf(), state, this)
         yourHoldingsRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -66,6 +69,10 @@ class MainActivity : AppCompatActivity(), YourHoldingsAdapter.OnButtonClickListe
         recentTxnAdapter = RecentTransactionsAdapter(arrayListOf())
         recentTransactionsRecyclerView.layoutManager = LinearLayoutManager(this)
         recentTransactionsRecyclerView.adapter = recentTxnAdapter
+
+        val currentPriceAdapter = CarouselAdapter(arrayListOf())
+        currentPriceRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        currentPriceRecyclerView.adapter = currentPriceAdapter
 
         viewModel.homeDto.observe(this) { homeDto ->
             homeDto?.let {
@@ -81,6 +88,7 @@ class MainActivity : AppCompatActivity(), YourHoldingsAdapter.OnButtonClickListe
                 }
                 recentTxnAdapter.updateList(it.allTransactions)
 
+                currentPriceAdapter.updateList(it.cryptoPrices)
             }
         }
 
@@ -124,6 +132,7 @@ class MainActivity : AppCompatActivity(), YourHoldingsAdapter.OnButtonClickListe
                 valueStateButton.backgroundTintList = AppCompatResources.getColorStateList(this, R.color.purple_200)
             }
         }
+
     }
 
     override fun onDepositClicked(cryptoName: String) {

@@ -14,7 +14,7 @@ class YourHoldingsAdapter(
     private val itemsList: ArrayList<YourCryptoHolding>,
     // 0: Empty State, 1: Value State
     private var state: Int,
-    val listener: OnButtonClickListener
+    private val listener: OnButtonClickListener
 ): RecyclerView.Adapter<YourHoldingsAdapter.MyViewHolder>()  {
 
 

@@ -97,7 +97,7 @@
             android:text="$300.22(+21.51%)"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="#599F27"
+            android:textColor="@color/my_green"
             app:layout_constraintTop_toBottomOf="@id/title2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
